@@ -40,7 +40,7 @@
             <label class="mr-2 text-gray-800">Username:</label>
           </div>
           <input
-            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-3"
+            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-1"
             type="text" name="username_guest" placeholder="*" />
           <div class="flex justify-between">
             <div class="lg:flex block duration-300">
@@ -51,7 +51,7 @@
                 alt="show_password" /></span>
           </div>
           <input :type="inputType" id="passwordGuest"
-            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-3"
+            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-1"
             name="password_guest" placeholder="*" />
 
           <div class="flex justify-center items-center mb-3 text-center">
@@ -115,7 +115,7 @@
             <label class="mr-2 text-gray-800">Username:</label>
           </div>
           <input
-            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-3"
+            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-1"
             type="text" name="username_admin" placeholder="*" />
           <div class="flex justify-between">
             <div class="lg:flex block duration-300">
@@ -126,7 +126,7 @@
             </span>
           </div>
           <input :type="inputType" id="passwordAdmin"
-            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-3"
+            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-1"
             name="password_admin" placeholder="*" />
 
           <div class="flex justify-center items-center mb-3 text-center">
@@ -158,6 +158,7 @@ export default {
       required: true
     }
   },
+
   components: {
     NestedModal
   },
@@ -169,6 +170,7 @@ export default {
       isNestedModalOpen: false,
     };
   },
+
   methods: {
     closeModal() {
       this.$emit('close');
@@ -188,6 +190,10 @@ export default {
     closeNestedModal() {
       this.isNestedModalOpen = false;
     }
+  },
+
+  mounted() {
+    document.title = 'Login | Psyche Assist';
   }
 };
 </script>
