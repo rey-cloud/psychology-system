@@ -7,7 +7,10 @@
         &times;
       </button>
 
-      <form @submit.prevent="registerAcc" @keydown.enter.prevent class="w-[400px] lg:w-[700px] duration-300">
+      <div v-if="isLoading">
+        <Loading :title="isLoadingTitle" />
+      </div>
+      <form @submit.prevent="registerAcc()" @keydown.enter.prevent class="w-[400px] lg:w-[700px] duration-300">
         <section class="mt-6 mb-5 cursor-default font-semibold text-gray-800 text-lg flex items-center">
           <img class="w-auto h-6 mr-1" src="assets/img/add-user.png" alt="add-user">
           <h1 class="font-bold">Create an Account</h1>
@@ -28,19 +31,19 @@
               <div>
                 <input
                   class="lg:w-[288px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                  type="text" v-model="new_acc.reg_fname" placeholder="*">
+                  type="text" v-model="reg_acc.first_name" placeholder="*" />
                 <h4 class="text-sm text-gray-400">First Name</h4>
               </div>
               <div>
                 <input
                   class="lg:w-[288px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                  type="text" v-model="new_acc.reg_lname" placeholder="*">
+                  type="text" v-model="reg_acc.last_name" placeholder="*" />
                 <h4 class="text-sm text-gray-400">Last Name</h4>
               </div>
               <div class="">
                 <input
                   class="lg:w-[100px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                  v-model="new_acc.reg_midini" type="text">
+                  v-model="reg_acc.middle_initial" type="text" />
                 <h4 class="text-sm text-gray-400">M. I. (Optional)</h4>
               </div>
             </section>
@@ -53,7 +56,7 @@
               </div>
               <input
                 class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                type="text" v-model="new_acc.reg_bdate" placeholder="MM-dd-YYYY">
+                type="text" v-model="reg_acc.birth_date" placeholder="MM-dd-YYYY" />
             </section>
 
             <section>
@@ -63,24 +66,24 @@
               <div class="lg:flex block lg:gap-5 gap-5 lg:justify-between justify-normal mt-1">
                 <div class="flex lg:gap-5 gap-10 mb-2 m-auto">
                   <div class="flex justify-center">
-                    <input id="male-radio" class="mr-2" type="radio" v-model="new_acc.reg_gender" name="gender_choice"
-                      value="male" @change="toggleTextInput">
+                    <input id="male-radio" class="mr-2" type="radio" v-model="reg_acc.gender" name="gender_choice"
+                      value="male" @change="toggleTextInput" />
                     <label for="male-radio" class="text-gray-600">Male</label>
                   </div>
                   <div class="flex justify-center">
-                    <input id="female-radio" class="mr-2" type="radio" v-model="new_acc.reg_gender" name="gender_choice"
-                      value="female" @change="toggleTextInput">
+                    <input id="female-radio" class="mr-2" type="radio" v-model="reg_acc.gender" name="gender_choice"
+                      value="female" @change="toggleTextInput" />
                     <label for="female-radio" class="text-gray-600 m-auto">Female</label>
                   </div>
                 </div>
                 <div class="flex justify-center">
-                  <input id="others-radio" class="mr-2 mt-1" type="radio" v-model="new_acc.reg_gender"
-                    name="gender_choice" value="others" @change="toggleTextInput">
+                  <input id="others-radio" class="mr-2 mt-1" type="radio" v-model="reg_acc.gender"
+                    name="gender_choice" value="others" @change="toggleTextInput" />
                   <label for="others-radio" class="text-gray-600 mr-2 m-auto">Others:</label>
                   <input id="others-text-input" ref="othersTextInput"
                     class="w-full bg-[#cbd0d9] py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    type="text" name="other_gender" v-model="new_acc.other_gender_text" placeholder="Please specify"
-                    disabled>
+                    type="text" name="other_gender" v-model="reg_acc.other_gender_text" placeholder="Please specify"
+                    disabled />
 
                 </div>
               </div>
@@ -94,7 +97,7 @@
               </div>
               <input
                 class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                type="text" v-model="new_acc.reg_contact">
+                type="text" v-model="reg_acc.phone" />
             </div>
             <div>
               <div class="lg:flex block duration-300">
@@ -102,7 +105,7 @@
               </div>
               <input
                 class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                type="text" v-model="new_acc.reg_address" placeholder="*">
+                type="text" v-model="reg_acc.address" placeholder="*" />
             </div>
           </section>
 
@@ -122,7 +125,7 @@
               </div>
               <input
                 class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                type="text" v-model="new_acc.reg_username" placeholder="*">
+                type="text" v-model="reg_acc.username" placeholder="*" />
             </div>
             <div>
               <div class="lg:flex block duration-300">
@@ -130,7 +133,7 @@
               </div>
               <input
                 class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                type="email" v-model="new_acc.reg_email" placeholder="*">
+                type="email" v-model="reg_acc.email" placeholder="*" />
             </div>
           </section>
 
@@ -142,7 +145,7 @@
               </div>
               <input :type="passwordInputType"
                 class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                v-model="new_acc.reg_pass" placeholder="*">
+                v-model="reg_acc.password" placeholder="*" />
             </div>
 
             <!-- Confirm Password Input -->
@@ -158,7 +161,7 @@
               </div>
               <input :type="confirmPasswordInputType"
                 class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                v-model="new_acc.reg_cpass" placeholder="*">
+                v-model="reg_acc.confirm_password" placeholder="*" />
             </div>
           </section>
         </section>
@@ -183,6 +186,7 @@
 
 
 <script>
+import axios from 'axios';
 
 export default {
   name: "RegisterAcc",
@@ -196,48 +200,72 @@ export default {
 
   data() {
     return {
-      new_acc: {
-        reg_fname: '',
-        reg_lname: '',
-        reg_midini: '',
-        reg_bdate: '',
-        reg_gender: '',
+      reg_acc: {
+        first_name: '',
+        last_name: '',
+        middle_initial: '',
+        birth_date: '',
+        gender: '',
         other_gender_text: '',
-        reg_username: '',
-        reg_email: '',
-        reg_pass: '',
-        reg_cpass: '',
-        reg_contact: '',
-        reg_address: '',
+        username: '',
+        email: '',
+        password: '',
+        confirm_password: '',
+        phone: '',
+        address: '',
       },
+      isLoading: false,
+      isLoadingTitle: "Loading",
       isPasswordVisible: false,
       passwordInputType: 'password',
-      confirmPasswordInputType: 'password'
+      confirmPasswordInputType: 'password',
+      errorList: {}
     };
   },
 
   methods: {
-    closeModal() {
-      this.new_acc.reg_fname = '';
-      this.new_acc.reg_lname = '';
-      this.new_acc.reg_midini = '';
-      this.new_acc.reg_bdate = '';
-      this.new_acc.reg_gender = '';
-      this.new_acc.other_gender_text = '';
-      this.new_acc.reg_username = '';
-      this.new_acc.reg_email = '';
-      this.new_acc.reg_pass = '';
-      this.new_acc.reg_cpass = '';
-      this.new_acc.reg_contact = '';
-      this.new_acc.reg_address = '';
-      this.$emit('close');
-    },
     registerAcc() {
       // Handle form submission logic here
       // For example, send a request to register the user
       // You can use this.firstName, this.lastName, etc. to access form data
-      alert("Registered!");
-      this.closeModal();
+      // alert("Registered!");
+
+      this.isLoading = true;
+      this.isLoadingTitle = "Saving";
+
+      axios.post(`http://127.0.0.1:8000/api/users`, this.reg_acc).then(res => {
+        console.log(res, 'res');
+        alert(res.data.message);
+
+        this.reg_acc.first_name = '';
+        this.reg_acc.last_name = '';
+        this.reg_acc.middle_initial = '';
+        this.reg_acc.birth_date = '';
+        this.reg_acc.gender = '';
+        this.reg_acc.username = '';
+        this.reg_acc.email = '';
+        this.reg_acc.password = '';
+        this.reg_acc.phone = '';
+        this.reg_acc.address = '';
+
+        this.isLoading = false;
+        this.isLoadingTitle = "Loading";
+      });
+    },
+    closeModal() {
+      this.reg_acc.reg_fname = '';
+      this.reg_acc.reg_lname = '';
+      this.reg_acc.reg_midini = '';
+      this.reg_acc.reg_bdate = '';
+      this.reg_acc.reg_gender = '';
+      this.reg_acc.other_gender_text = '';
+      this.reg_acc.reg_username = '';
+      this.reg_acc.reg_email = '';
+      this.reg_acc.reg_pass = '';
+      this.reg_acc.reg_cpass = '';
+      this.reg_acc.reg_contact = '';
+      this.reg_acc.reg_address = '';
+      this.$emit('close');
     },
     showPassword() {
       this.passwordInputType = 'text';
@@ -248,14 +276,14 @@ export default {
       this.confirmPasswordInputType = 'password';
     },
     toggleTextInput() {
-      const selectedGender = this.new_acc.reg_gender;
+      const selectedGender = this.reg_acc.reg_gender;
       if (selectedGender === 'others') {
         this.$refs.othersTextInput.disabled = false;
         this.$refs.othersTextInput.style.backgroundColor = 'white'; // Set background color to white
       } else {
         this.$refs.othersTextInput.disabled = true;
         this.$refs.othersTextInput.style.backgroundColor = '#cbd0d9'; // Set default background color
-        this.new_acc.other_gender_text = '';
+        this.reg_acc.other_gender_text = '';
       }
     }
   }
