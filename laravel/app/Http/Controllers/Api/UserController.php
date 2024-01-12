@@ -37,27 +37,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:reg_users,email',
             'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|same:password'
-        ], [
-            'first_name.required' => 'Required.',
-            'first_name.regex' => 'Only letters and spaces.',
-            'last_name.required' => 'Required.',
-            'last_name.regex' => 'Only letters and spaces.',
-            'middle_initial.alpha' => 'Letters only.',
-            'middle_initial.max' => 'Max 1 character.',
-            'birth_date.required' => 'Required.',
-            'birth_date.date_format' => 'Incorrect format.',
-            'gender.required' => 'Required.',
-            'phone.digits' => '11 digit numbers.',
-            'address.max' => 'Maximum length exceeded.',
-            'username.required' => 'Required.',
-            'username.max' => 'Maximum length exceeded.',
-            'username.unique' => 'Username already taken.',
-            'email.required' => 'Required.',
-            'email.unique' => 'Email already exists.',
-            'password.required' => 'Required.',
-            'password.min' => 'Atleast 8 characters.',
-            'confirm_password.required' => 'Required.',
-            'confirm_password.same' => 'Passwords do not match.',
         ]);
 
         if ($validator->fails()) {

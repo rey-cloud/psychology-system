@@ -7,7 +7,7 @@
         &times;
       </button>
 
-      <form @submit.prevent="registerAcc()" @keydown.enter.prevent class="w-[400px] lg:w-[700px] duration-300">
+      <form @submit.prevent="registerAcc()" class="w-[400px] lg:w-[700px] duration-300">
         <section class="mt-6 mb-5 cursor-default font-semibold text-gray-800 text-lg flex items-center">
           <img class="w-auto h-6 mr-1" src="assets/img/add-user.png" alt="add-user">
           <h1 class="font-bold">Create an Account</h1>
