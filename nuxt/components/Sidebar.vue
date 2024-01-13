@@ -17,7 +17,7 @@
       <!-- Logout link and Profile link at the bottom -->
       <div class="flex-grow"></div>
       <div>
-        <router-link to="/profile" class="text-white">Profile</router-link>
+        <router-link to="/adminprofiles" class="text-white">Profile</router-link>
       </div>
       <div class="mt-2">
         <button @click="logout" class="text-white">Logout</button>
