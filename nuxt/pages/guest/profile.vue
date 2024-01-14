@@ -9,7 +9,7 @@
       {{ state.user }}
       <div class="justify-between flex mb-3">
         <p class="text-[#445277] text-xl font-bold">Guest Profile</p>
-          <button @click="confirmLogout"
+          <button @click="Logout"
             class="px-3 py-2 bg-[#ff7765] hover:opacity-70 rounded-lg shadow-lg tracking-wider" id="logout">Log
             out
           </button>
@@ -80,6 +80,25 @@ const state = reactive({
         })
         if(response.data){
             state.user = response.data
+        }
+        }
+    catch(error){
+        state.errors = error.response
+        console.log('error', error)
+    }
+    }
+
+    async function Logout(){
+        try{
+        const response = await $fetch(`http://127.0.0.1:8000/api/logout`, {
+        method: 'POST',
+        headers:{
+            'Authorization': 'Bearer ' + localStorage.getItem('_token')
+            }
+        })
+        if(response){
+            localStorage.removeItem('_token')
+            navigateTo('/')
         }
         }
     catch(error){

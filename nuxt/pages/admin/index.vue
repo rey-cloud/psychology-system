@@ -12,7 +12,7 @@
           <p class="m-auto ml-3">Welcome, Admin!</p>
         </div>
         <div class="flex">
-          <button @click="confirmLogout"
+          <button @click="Logout()"
             class="m-auto border px-3 py-2 hover:bg-[#a4aaad] hover:text-[#2c3840] rounded-lg flex" id="logout">Log
             out
           </button>
@@ -97,6 +97,25 @@ const state = reactive({
         })
         if(response.data){
             state.user = response.data
+        }
+        }
+    catch(error){
+        state.errors = error.response
+        console.log('error', error)
+    }
+    }
+
+    async function Logout(){
+        try{
+        const response = await $fetch(`http://127.0.0.1:8000/api/logout`, {
+        method: 'POST',
+        headers:{
+            'Authorization': 'Bearer ' + localStorage.getItem('_token')
+            }
+        })
+        if(response){
+            localStorage.removeItem('_token')
+            navigateTo('/')
         }
         }
     catch(error){
