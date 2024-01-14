@@ -33,80 +33,86 @@
         </div>
       </section>
 
-      <!-- Guest Login Form -->
-      <section id="guestLogin" v-if="activeForm === 'guestLogin'">
-        <section class="w-[350px] lg:w-[500px] mx-auto duration-300">
-          <div class="lg:flex block duration-300">
-            <label class="mr-2 text-gray-800">Username:</label>
-          </div>
-          <input
-            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-1"
-            type="text" name="username_guest" placeholder="*" />
-          <div class="flex justify-between">
+
+      <form @submit.prevent="login">
+        <!-- Guest Login Form -->
+        <section id="guestLogin" v-if="activeForm === 'guestLogin'">
+          <section class="w-[350px] lg:w-[500px] mx-auto duration-300">
             <div class="lg:flex block duration-300">
-              <label class="mr-2 text-gray-800">Password:</label>
+              <label class="mr-2 text-gray-800">Username:</label>
             </div>
-            <span @mouseover="showPassword" @mouseout="hidePassword">
-              <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/eye.png"
-                alt="show_password" /></span>
-          </div>
-          <input :type="inputType" id="passwordGuest"
-            class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-1"
-            name="password_guest" placeholder="*" />
-
-          <div class="flex justify-center items-center mb-3 text-center">
-            <button type="submit" name="go-to-home-page"
-              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#002951] transition duration-300 ease-in-out">
-              Enter
-            </button>
-          </div>
-        </section>
-
-        <section class="text-end justify-between lg:mt-5 mt-0 lg:flex lg:flex-row flex flex-col-reverse">
-          <div class="flex justify-center">
-            <p class="text-gray-800 text-base">Don't have an account?</p>
-            <div>
-              <button name="go-to-sign-up" @click="openNestedModal"
-                class="ml-1 font-medium text-blue-800 hover:opacity-60">
-                Sign Up
+            <input
+              class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-1"
+              type="text" name="username_guest" placeholder="*" v-model="users.username" />
+            <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.username ? errorList.username[0] : '' }}</span>
+            <div class="flex justify-between">
+              <div class="lg:flex block duration-300">
+                <label class="mr-2 text-gray-800">Password:</label>
+              </div>
+              <span @mouseover="showPassword" @mouseout="hidePassword">
+                <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/eye.png"
+                  alt="show_password" /></span>
+            </div>
+            <input :type="inputType" id="passwordGuest"
+              class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-1"
+              name="password_guest" placeholder="*" v-model="users.password" />
+              <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.password ? errorList.password[0] : '' }}</span>
+  
+            <div class="flex justify-center items-center mb-3 text-center">
+              <button type="submit" name="go-to-home-page"
+                class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#002951] transition duration-300 ease-in-out">
+                Enter
               </button>
-              <NestedModal :isOpen="isNestedModalOpen" @close="closeNestedModal" />
             </div>
-          </div>
-          <div>
-            <button name="go-to-forgot-password" class="text-blue-800 text-sm hover:opacity-60 mb-3">
-              Forgot password?
+          </section>
+  
+          <section class="text-end justify-between lg:mt-5 mt-0 lg:flex lg:flex-row flex flex-col-reverse">
+            <div class="flex justify-center">
+              <p class="text-gray-800 text-base">Don't have an account?</p>
+              <div>
+                <button name="go-to-sign-up" @click="openNestedModal"
+                  class="ml-1 font-medium text-blue-800 hover:opacity-60">
+                  Sign Up
+                </button>
+                <NestedModal :isOpen="isNestedModalOpen" @close="closeNestedModal" />
+              </div>
+            </div>
+            <div>
+              <button name="go-to-forgot-password" class="text-blue-800 text-sm hover:opacity-60 mb-3">
+                Forgot password?
+              </button>
+            </div>
+          </section>
+  
+          <section class="flex justify-center mt-5 mb-3 cursor-default">
+            <hr class="w-full m-auto border mr-2" />
+            <p class="m-auto text-gray-800 text-sm font-bold">OR</p>
+            <hr class="w-full m-auto border ml-2" />
+          </section>
+  
+          <p class="text-center mb-5 text-gray-800">Sign in using:</p>
+  
+          <section class="mb-5">
+            <button
+              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#4eb876] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
+              <div class="flex justify-center items-center m-auto">
+                <img class="w-auto h-6 mr-2" src="assets/img/google.png" alt="google" />
+                <p class="m-auto mr-1 lg:block hidden">Login with</p>
+                <p class="m-auto">Google</p>
+              </div>
             </button>
-          </div>
+            <button
+              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#0041de] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
+              <div class="flex justify-center items-center m-auto">
+                <img class="w-auto h-6 mr-2" src="assets/img/facebook.png" alt="fb" />
+                <p class="m-auto mr-1 lg:block hidden">Login with</p>
+                <p class="m-auto">Facebook</p>
+              </div>
+            </button>
+          </section>
         </section>
 
-        <section class="flex justify-center mt-5 mb-3 cursor-default">
-          <hr class="w-full m-auto border mr-2" />
-          <p class="m-auto text-gray-800 text-sm font-bold">OR</p>
-          <hr class="w-full m-auto border ml-2" />
-        </section>
-
-        <p class="text-center mb-5 text-gray-800">Sign in using:</p>
-
-        <section class="mb-5">
-          <button
-            class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#4eb876] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
-            <div class="flex justify-center items-center m-auto">
-              <img class="w-auto h-6 mr-2" src="assets/img/google.png" alt="google" />
-              <p class="m-auto mr-1 lg:block hidden">Login with</p>
-              <p class="m-auto">Google</p>
-            </div>
-          </button>
-          <button
-            class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#0041de] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
-            <div class="flex justify-center items-center m-auto">
-              <img class="w-auto h-6 mr-2" src="assets/img/facebook.png" alt="fb" />
-              <p class="m-auto mr-1 lg:block hidden">Login with</p>
-              <p class="m-auto">Facebook</p>
-            </div>
-          </button>
-        </section>
-      </section>
+      </form>
 
       <!-- Admin Login Form (hidden by default) -->
       <section id="adminLogin" v-if="activeForm === 'adminLogin'">
@@ -149,7 +155,9 @@
 
 
 <script>
+import axios from 'axios';
 import NestedModal from './register-acc.vue';
+
 
 export default {
   props: {
@@ -164,14 +172,43 @@ export default {
   },
   data() {
     return {
-      isNestedModalOpen: false,
+      users: {
+        username: "",
+        password: "",
+      },
+      isNestedModalOpen: false, // Remove the duplicate declaration
       activeForm: "guestLogin",
       inputType: "password",
-      isNestedModalOpen: false,
+      errorList: []
     };
   },
 
+
   methods: {
+    login() {
+      axios.post(`http://127.0.0.1:8000/api/login`, this.users)
+        .then(res => {
+          console.log(res, 'res');
+          alert(res.data.status);
+
+          this.clearFormData();
+          this.errorList = '';
+
+          this.isLoading = false;
+          this.isLoadingTitle = "Loading";
+        })
+        .catch(error => {
+          console.log(error, 'errors');
+
+          if (error.response) {
+            if (error.response.status == 422) {
+              this.errorList = error.response.data.errors;
+            }
+          }
+          this.isLoading = false;
+        });
+    },
+
     closeModal() {
       this.$emit('close');
     },

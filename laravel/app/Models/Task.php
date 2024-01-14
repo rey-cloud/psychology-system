@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Task extends Model
 {
     use HasFactory;
 
-    protected $table = 'questions';
-
     protected $fillable = [
-        'q_name',
-        'q_1',
-        'q_2',
-        'q_3',
-        'q_4',
+        'user_id', 'name', 'descriptions', 'priority'
+
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

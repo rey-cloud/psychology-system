@@ -34,28 +34,22 @@
                   <h4 class="text-sm text-gray-400">First Name</h4>
                   <input
                     class="lg:w-[288px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    type="text" v-model="reg_acc.first_name" placeholder="*" />
-                  <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.first_name">{{
-                    this.errorList.first_name[0], this.errorList.first_name[1], this.errorList.first_name[2]
-                  }}</span>
+                    type="text" v-model="users.first_name" placeholder="*" />
+                  <span class="text-sm text-red-500 font-semibold tracking-wide">{{ errorList && errorList.first_name ? errorList.first_name[0] : '' }}</span>
                 </div>
                 <div>
                   <h4 class="text-sm text-gray-400">Last Name</h4>
                   <input
                     class="lg:w-[288px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    type="text" v-model="reg_acc.last_name" placeholder="*" />
-                  <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.last_name">{{
-                    this.errorList.last_name[0], this.errorList.last_name[1], this.errorList.last_name[2]
-                  }}</span>
+                    type="text" v-model="users.last_name" placeholder="*" />
+                  <span class="text-sm text-red-500 font-semibold tracking-wide">{{ errorList && errorList.last_name ? errorList.last_name[0] : '' }}</span>
                 </div>
                 <div class="">
                   <h4 class="text-sm text-gray-400">M. I. (Opt.)</h4>
                   <input
                     class="lg:w-[100px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    v-model="reg_acc.middle_initial" type="text" />
-                  <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.middle_initial">{{
-                    this.errorList.middle_initial[0], this.errorList.middle_initial[1], this.errorList.middle_initial[2]
-                  }}</span>
+                    v-model="users.middle_initial" type="text" />
+                  <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.middle_initial ? errorList.middle_initial[0] : '' }}</span>
                 </div>
               </section>
             </section>
@@ -68,10 +62,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.birth_date" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.birth_date">{{
-                  this.errorList.birth_date[0], this.errorList.birth_date[1]
-                }}</span>
+                  type="text" v-model="users.birth_date" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.birth_date ? errorList.birth_date[0] : '' }}</span>
               </div>
               <div class="lg:w-full w-auto">
                 <div class="lg:flex block duration-300">
@@ -79,19 +71,17 @@
                 </div>
                 <div class="px-2 py-2 flex mt-2 justify-between">
                   <div class="flex w-full lg:w-1/2 lg:mr-0 mr-10">
-                    <input id="male-radio" class="mr-2" type="radio" v-model="reg_acc.gender" name="gender_choice"
+                    <input id="male-radio" class="mr-2" type="radio" v-model="users.gender" name="gender_choice"
                       value="male" />
                     <label for="male-radio" class="text-gray-600">Male</label>
                   </div>
                   <div class="flex w-full">
-                    <input id="female-radio" class="mr-2" type="radio" v-model="reg_acc.gender" name="gender_choice"
+                    <input id="female-radio" class="mr-2" type="radio" v-model="users.gender" name="gender_choice"
                       value="female" />
                     <label for="female-radio" class="text-gray-600">Female</label>
                   </div>
                 </div>
-                <span class="text-sm text-red-500 font-semibold tracking-wide ml-2" v-if="this.errorList.gender">{{
-                  this.errorList.gender[0]
-                }}</span>
+                <span class="text-sm text-red-500 font-semibold tracking-wide ml-2" >{{ errorList && errorList.gender ? errorList.gender[0] : '' }}</span>
               </div>
             </section>
 
@@ -105,10 +95,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.phone" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.phone">{{
-                  this.errorList.phone[0], this.errorList.phone[1]
-                }}</span>
+                  type="text" v-model="users.phone" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.phone  ? errorList.phone[0] : '' }}</span>
               </div>
               <div>
                 <div class="lg:flex block duration-300">
@@ -116,10 +104,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.address" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.address">{{
-                  this.errorList.address[0], this.errorList.address[1], this.errorList.address[2]
-                }}</span>
+                  type="text" v-model="users.address" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.address ? errorList.address[0] : '' }}</span>
               </div>
             </section>
 
@@ -139,11 +125,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.username" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.username">{{
-                  this.errorList.username[0], this.errorList.username[1], this.errorList.username[2],
-                  this.errorList.username[3]
-                }}</span>
+                  type="text" v-model="users.username" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.username ? errorList.username[0] : '' }}</span>
               </div>
               <div>
                 <div class="lg:flex block duration-300">
@@ -151,10 +134,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="email" v-model="reg_acc.email" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.email">{{
-                  this.errorList.email[0], this.errorList.email[1]
-                }}</span>
+                  type="email" v-model="users.email" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.email ? errorList.email[0] : '' }}</span>
               </div>
             </section>
 
@@ -166,11 +147,8 @@
                 </div>
                 <input :type="passwordInputType"
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  v-model="reg_acc.password" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.password">{{
-                  this.errorList.password[0], this.errorList.password[1], this.errorList.password[2],
-                  this.errorList.password[3]
-                }}</span>
+                  v-model="users.password" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.password ? errorList.password[0] : '' }}</span>
               </div>
 
               <!-- Confirm Password Input -->
@@ -186,11 +164,8 @@
                 </div>
                 <input :type="confirmPasswordInputType"
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  v-model="reg_acc.confirm_password" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.confirm_password">{{
-                  this.errorList.confirm_password[0], this.errorList.confirm_password[1],
-                  this.errorList.confirm_password[2]
-                }}</span>
+                  v-model="users.password_confirmation" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" ></span>
               </div>
             </section>
           </section>
@@ -222,38 +197,34 @@ import axios from 'axios';
 
 export default {
   name: "RegisterAcc",
-
   props: {
     isOpen: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
-
   data() {
     return {
-      reg_acc: {
-        first_name: '',
-        last_name: '',
-        middle_initial: '',
-        birth_date: '',
-        gender: '',
-        username: '',
-        email: '',
-        password: '',
-        confirm_password: '',
-        phone: '',
-        address: '',
+      users: {
+        first_name: "",
+        last_name: "",
+        middle_initial: "",
+        birth_date: "",
+        gender: "",
+        username: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        phone: "",
+        address: "",
       },
       isLoading: false,
       isLoadingTitle: "Loading",
-      isPasswordVisible: false,
-      passwordInputType: 'password',
-      confirmPasswordInputType: 'password',
-      errorList: {}
+      passwordInputType: "password",
+      confirmPasswordInputType: "password",
+      errorList: []
     };
   },
-
   methods: {
     registerAcc() {
       this.isLoading = true;
@@ -261,61 +232,46 @@ export default {
 
       var myThis = this;
 
-      axios.post(`http://127.0.0.1:8000/api/users`, this.reg_acc).then(res => {
-        console.log(res, 'res');
-        alert(res.data.message);
+      axios.post(`http://127.0.0.1:8000/api/register`, this.users)
+        .then(res => {
+          console.log(res, 'res');
+          alert(res.data.status);
 
-        this.reg_acc.first_name = '';
-        this.reg_acc.last_name = '';
-        this.reg_acc.middle_initial = '';
-        this.reg_acc.birth_date = '';
-        this.reg_acc.gender = '';
-        this.reg_acc.username = '';
-        this.reg_acc.email = '';
-        this.reg_acc.password = '';
-        this.reg_acc.confirm_password = '';
-        this.reg_acc.phone = '';
-        this.reg_acc.address = '';
-        this.errorList = '';
+          this.clearFormData();
+          this.errorList = '';
 
-        this.isLoading = false;
-        this.isLoadingTitle = "Loading";
-      })
-        .catch(function (error) {
+          this.isLoading = false;
+          this.isLoadingTitle = "Loading";
+        })
+        .catch(error => {
           console.log(error, 'errors');
 
           if (error.response) {
-            if (error.response.status == 422) {
-              myThis.errorList = error.response.data.errors;
-            }
+              if (error.response.status == 422) {
+                myThis.errorList = error.response.data.errors;
+              }
           }
           myThis.isLoading = false;
         });
-    },
-    closeModal() {
-      this.reg_acc.first_name = '';
-      this.reg_acc.last_name = '';
-      this.reg_acc.middle_initial = '';
-      this.reg_acc.birth_date = '';
-      this.reg_acc.gender = '';
-      this.reg_acc.username = '';
-      this.reg_acc.email = '';
-      this.reg_acc.password = '';
-      this.reg_acc.confirm_password = '';
-      this.reg_acc.phone = '';
-      this.reg_acc.address = '';
-      this.errorList = '';
-      this.$emit('close');
 
     },
+    closeModal() {
+      this.clearFormData();
+      this.$emit("close");
+    },
     showPassword() {
-      this.passwordInputType = 'text';
-      this.confirmPasswordInputType = 'text';
+      this.passwordInputType = "text";
+      this.confirmPasswordInputType = "text";
     },
     hidePassword() {
-      this.passwordInputType = 'password';
-      this.confirmPasswordInputType = 'password';
+      this.passwordInputType = "password";
+      this.confirmPasswordInputType = "password";
     },
-  }
+    clearFormData() {
+      for (const key in this.users) {
+        this.users[key] = "";
+      }
+    },
+  },
 };
 </script>
