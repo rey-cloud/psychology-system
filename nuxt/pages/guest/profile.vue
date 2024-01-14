@@ -6,6 +6,7 @@
     <Navbar />
 
     <div class="relative lg:px-20 px-5 mb-20 text-white tracking-wide">
+      {{ state.user }}
       <div class="justify-between flex mb-3">
         <p class="text-[#445277] text-xl font-bold">Guest Profile</p>
           <button @click="confirmLogout"
@@ -62,12 +63,28 @@
 import Navbar from '~/components/navbar.vue';
 import Footer from '~/components/footer.vue';
 
-const confirmLogout = () => {
-  const result = window.confirm('Are you sure you want to log out?');
+const state = reactive({
+    user: null
+})
+    onMounted(()=>{
+        fetchUser()
+    })
 
-  if (result) {
-    alert('Logging out...');
-    this.$router.push('/');
-  }
-};
+    async function fetchUser(){
+    try{
+        const response = await $fetch(`http://127.0.0.1:8000/api/user`, {
+        method: 'GET',
+        headers:{
+            'Authorization': 'Bearer ' + localStorage.getItem('_token')
+        }
+        })
+        if(response.data){
+            state.user = response.data
+        }
+        }
+    catch(error){
+        state.errors = error.response
+        console.log('error', error)
+    }
+    }
 </script>
