@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginAdminRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Traits\HttpResponses;
@@ -14,6 +15,25 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
+    public function adminLogin(LoginAdminRequest $request) {
+        $request->validated();
+    
+        if (!Auth::attempt($request->only('username', 'password'))) {
+            return $this->error('', 'Credentials do not match', 401);
+        }
+    
+        $user = User::where('username', $request->username)->first();
+    
+        if ($user->type !== 'admin') {
+            Auth::logout(); // Logout the user if the type is not admin
+            return $this->error('', 'Unauthorized. Admin credentials required.', 401);
+        }
+    
+        return $this->success([
+            'user' => $user,
+            'token' => $user->createToken('API Token of '. $user->first_name)->plainTextToken
+        ]);
+    }
     
     
     public function login(LoginUserRequest $request) {
