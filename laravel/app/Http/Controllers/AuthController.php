@@ -14,6 +14,8 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
+    
+    
     public function login(LoginUserRequest $request) {
         $request->validated($request->all());
 

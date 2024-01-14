@@ -34,28 +34,22 @@
                   <h4 class="text-sm text-gray-400">First Name</h4>
                   <input
                     class="lg:w-[288px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    type="text" v-model="reg_acc.first_name" placeholder="*" />
-                  <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.first_name">{{
-                    this.errorList.first_name[0], this.errorList.first_name[1], this.errorList.first_name[2]
-                  }}</span>
+                    type="text" v-model="users.first_name" placeholder="*" />
+                  <span class="text-sm text-red-500 font-semibold tracking-wide">{{ errorList && errorList.first_name ? errorList.first_name[0] : '' }}</span>
                 </div>
                 <div>
                   <h4 class="text-sm text-gray-400">Last Name</h4>
                   <input
                     class="lg:w-[288px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    type="text" v-model="reg_acc.last_name" placeholder="*" />
-                  <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.last_name">{{
-                    this.errorList.last_name[0], this.errorList.last_name[1], this.errorList.last_name[2]
-                  }}</span>
+                    type="text" v-model="users.last_name" placeholder="*" />
+                  <span class="text-sm text-red-500 font-semibold tracking-wide">{{ errorList && errorList.last_name ? errorList.last_name[0] : '' }}</span>
                 </div>
                 <div class="">
                   <h4 class="text-sm text-gray-400">M. I. (Opt.)</h4>
                   <input
                     class="lg:w-[100px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94]"
-                    v-model="reg_acc.middle_initial" type="text" />
-                  <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.middle_initial">{{
-                    this.errorList.middle_initial[0], this.errorList.middle_initial[1], this.errorList.middle_initial[2]
-                  }}</span>
+                    v-model="users.middle_initial" type="text" />
+                  <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.middle_initial ? errorList.middle_initial[0] : '' }}</span>
                 </div>
               </section>
             </section>
@@ -68,10 +62,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.birth_date" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.birth_date">{{
-                  this.errorList.birth_date[0], this.errorList.birth_date[1]
-                }}</span>
+                  type="text" v-model="users.birth_date" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.birth_date ? errorList.birth_date[0] : '' }}</span>
               </div>
               <div class="lg:w-full w-auto">
                 <div class="lg:flex block duration-300">
@@ -103,10 +95,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.phone" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.phone">{{
-                  this.errorList.phone[0], this.errorList.phone[1]
-                }}</span>
+                  type="text" v-model="users.phone" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.phone  ? errorList.phone[0] : '' }}</span>
               </div>
               <div>
                 <div class="lg:flex block duration-300">
@@ -114,10 +104,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.address" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.address">{{
-                  this.errorList.address[0], this.errorList.address[1], this.errorList.address[2]
-                }}</span>
+                  type="text" v-model="users.address" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.address ? errorList.address[0] : '' }}</span>
               </div>
             </section>
 
@@ -137,11 +125,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="text" v-model="reg_acc.username" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.username">{{
-                  this.errorList.username[0], this.errorList.username[1], this.errorList.username[2],
-                  this.errorList.username[3]
-                }}</span>
+                  type="text" v-model="users.username" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.username ? errorList.username[0] : '' }}</span>
               </div>
               <div>
                 <div class="lg:flex block duration-300">
@@ -149,10 +134,8 @@
                 </div>
                 <input
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  type="email" v-model="reg_acc.email" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.email">{{
-                  this.errorList.email[0], this.errorList.email[1]
-                }}</span>
+                  type="email" v-model="users.email" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.email ? errorList.email[0] : '' }}</span>
               </div>
             </section>
 
@@ -164,11 +147,8 @@
                 </div>
                 <input :type="passwordInputType"
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  v-model="reg_acc.password" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.password">{{
-                  this.errorList.password[0], this.errorList.password[1], this.errorList.password[2],
-                  this.errorList.password[3]
-                }}</span>
+                  v-model="users.password" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.password ? errorList.password[0] : '' }}</span>
               </div>
 
               <!-- Confirm Password Input -->
@@ -184,11 +164,8 @@
                 </div>
                 <input :type="confirmPasswordInputType"
                   class="lg:w-[340px] w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
-                  v-model="reg_acc.confirm_password" placeholder="*" />
-                <span class="text-sm text-red-500 font-semibold tracking-wide" v-if="this.errorList.confirm_password">{{
-                  this.errorList.confirm_password[0], this.errorList.confirm_password[1],
-                  this.errorList.confirm_password[2]
-                }}</span>
+                  v-model="users.password_confirmation" placeholder="*" />
+                <span class="text-sm text-red-500 font-semibold tracking-wide" ></span>
               </div>
             </section>
           </section>
@@ -204,7 +181,7 @@
 
           <section class="flex justify-center items-center">
             <button type="submit" name="register"
-              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#445277] transition duration-300 ease-in-out">Register</button>
+              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#002951] transition duration-300 ease-in-out">Register</button>
           </section>
         </div>
 
