@@ -203,7 +203,7 @@
 
           <section class="flex justify-center items-center">
             <button type="submit" name="register"
-              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#002951] transition duration-300 ease-in-out">Register</button>
+              class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#445277] transition duration-300 ease-in-out">Register</button>
           </section>
         </div>
 
