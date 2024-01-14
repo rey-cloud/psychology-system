@@ -6,7 +6,6 @@
     <Navbar />
 
     <div class="relative lg:px-20 px-5 mb-20 text-white tracking-wide">
-      {{ state.user }}
       <div class="justify-between flex mb-3">
         <p class="text-[#445277] text-xl font-bold">Guest Profile</p>
           <button @click="Logout"
@@ -25,7 +24,10 @@
             </div>
             <img class="w-auto h-52 m-auto" src="/assets/img/guest/user.png" alt="user-img">
             <section class="mt-5 rounded-md p-5 tracking-wider font-semibold bg-[#8a94ac]">
-              <p>Name: <span class="font-normal">fname + mid. + lname</span></p>
+              <p>Name: <span class="font-normal">
+                
+                {{ state.user.first_name + state.user.middle_initial + state.user.last_name }}
+              </span></p>
               <p>Gender: <span class="font-normal">male / female</span></p>
               <p>Date of Birth: <span class="font-normal">yyyy-mm-dd</span></p>
               <p>Date of Birth: <span class="font-normal">yyyy-mm-dd</span></p>
@@ -64,46 +66,46 @@ import Navbar from '~/components/navbar.vue';
 import Footer from '~/components/footer.vue';
 
 const state = reactive({
-    user: null
+  user: null
 })
-    onMounted(()=>{
-        fetchUser()
+onMounted(() => {
+  fetchUser()
+})
+
+async function fetchUser() {
+  try {
+    const response = await $fetch(`http://127.0.0.1:8000/api/user`, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('_token')
+      }
     })
+    if (response.data) {
+      state.user = response.data
+    }
+  }
+  catch (error) {
+    state.errors = error.response
+    console.log('error', error)
+  }
+}
 
-    async function fetchUser(){
-    try{
-        const response = await $fetch(`http://127.0.0.1:8000/api/user`, {
-        method: 'GET',
-        headers:{
-            'Authorization': 'Bearer ' + localStorage.getItem('_token')
-        }
-        })
-        if(response.data){
-            state.user = response.data
-        }
-        }
-    catch(error){
-        state.errors = error.response
-        console.log('error', error)
+async function Logout() {
+  try {
+    const response = await $fetch(`http://127.0.0.1:8000/api/logout`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('_token')
+      }
+    })
+    if (response) {
+      localStorage.removeItem('_token')
+      navigateTo('/')
     }
-    }
-
-    async function Logout(){
-        try{
-        const response = await $fetch(`http://127.0.0.1:8000/api/logout`, {
-        method: 'POST',
-        headers:{
-            'Authorization': 'Bearer ' + localStorage.getItem('_token')
-            }
-        })
-        if(response){
-            localStorage.removeItem('_token')
-            navigateTo('/')
-        }
-        }
-    catch(error){
-        state.errors = error.response
-        console.log('error', error)
-    }
-    }
+  }
+  catch (error) {
+    state.errors = error.response
+    console.log('error', error)
+  }
+}
 </script>
