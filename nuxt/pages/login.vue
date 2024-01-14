@@ -42,35 +42,36 @@
             <div class="lg:flex block duration-300">
               <label class="mr-2 text-gray-800">Username:</label>
             </div>
-            <div class="text-red-500"
+            <input v-model="state.user.username"
+              :class="{ 'border-red-500': state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.username }"
+              class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
+              type="text" name="username_guest" placeholder="*" />
+            <div class="text-red-500 text-sm tracking-wider font-semibold"
               v-if="state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.username">
-
               {{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.username &&
                 state.errors._data.errors.username[0] }}
             </div>
-            <input v-model="state.user.username"
-              class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-1"
-              type="text" name="username_guest" placeholder="*" />
-            <div class="flex justify-between">
+
+            <div class="flex justify-between mt-5">
               <div class="lg:flex block duration-300">
                 <label class="mr-2 text-gray-800">Password:</label>
-              </div>
-
-              <div class="text-red-500"
-                v-if="state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.username">
-
-                {{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.password
-                  && state.errors._data.errors.password[0] }}
               </div>
               <span @mouseover="showPassword" @mouseout="hidePassword">
                 <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/forms/eye.png"
                   alt="show_password" /></span>
             </div>
-            <input v-model="state.user.password" :type="inputType" id="passwordGuest"
-              class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-1"
+            <input v-model="state.user.password"
+              :class="{ 'border-red-500': state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.password }"
+              :type="inputType" id="passwordGuest"
+              class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mt-1"
               name="password_guest" placeholder="*" />
+            <div class="text-red-500 text-sm tracking-wider font-semibold"
+              v-if="state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.username">
 
-            <div class="flex justify-center items-center mb-3 text-center">
+              {{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.password
+                && state.errors._data.errors.password[0] }}
+            </div>
+            <div class="flex justify-center items-center mb-3 mt-2 text-center">
               <button type="submit" name="go-to-home-page"
                 class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#445277] transition duration-300 ease-in-out">
                 Enter
