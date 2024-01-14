@@ -1,12 +1,13 @@
 <template lang="">
   <div>
-    this is admin profile
+    Results nya dri
   </div>
 </template>
+<script>
+export default {
 
-<script setup>
+}
 </script>
-
 <style lang="">
   
 </style>

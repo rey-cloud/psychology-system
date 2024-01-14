@@ -1,12 +1,10 @@
 <template lang="">
   <div>
-    this is admin profile
+    this is terms
   </div>
 </template>
-
 <script setup>
 </script>
-
 <style lang="">
   
 </style>

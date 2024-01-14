@@ -21,17 +21,11 @@
       </section>
     </div>
     <div class="text-center pb-10">
-      Copyright &copy; {{currentYear}} | All rights reserved by BSCS501.
+      Copyright &copy; {{ currentYear }} | All rights reserved by BSCS501.
     </div>
   </footer>
 </template>
 
-<script>
-export default {
-  computed: {
-    currentYear() {
-      return new Date().getFullYear();
-    }
-  }
-}
+<script setup>
+const currentYear = ref(new Date().getFullYear());
 </script>
