@@ -16,6 +16,7 @@ Route::post('/adminLogin', [AuthController::class, 'adminLogin']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::get('user', [AuthController::class, 'show']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/tasks', TasksController::class);
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginAdminRequest;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Resources\UserResource;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -75,5 +76,11 @@ class AuthController extends Controller
 
     public function logout() {
         return response()->json('this is my logout');
+    }
+
+    public function show(Request $payload)
+    {
+        $user = $payload->user();
+        return new UserResource($user);
     }
 }
