@@ -238,7 +238,7 @@ async function Register(){
   })
 
   if(response.data){
-    navigateTo('/User');
+    navigateTo('/guest');
   }
   }
   catch(error){
