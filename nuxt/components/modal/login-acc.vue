@@ -34,7 +34,7 @@
       </section>
 
 
-      <form @submit.prevent="login">
+      <form @submit.prevent="handleLogin()">
         <!-- Guest Login Form -->
         <section id="guestLogin" v-if="activeForm === 'guestLogin'">
           <section class="w-[350px] lg:w-[500px] mx-auto duration-300">
@@ -43,8 +43,8 @@
             </div>
             <input
               class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-5 mt-1"
-              type="text" name="username_guest" placeholder="*" v-model="users.username" />
-            <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.username ? errorList.username[0] : '' }}</span>
+              type="text" name="username_guest" placeholder="*" v-model="state.user.username" />
+            <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.username && state.errors._data.errors.username[0]}}</span>
             <div class="flex justify-between">
               <div class="lg:flex block duration-300">
                 <label class="mr-2 text-gray-800">Password:</label>
@@ -55,8 +55,8 @@
             </div>
             <input :type="inputType" id="passwordGuest"
               class="w-full bg-white py-2 px-3 rounded-md border-2 border-gray-300 transition-all duration-500 outline-none focus:border-[#003568] focus:text-[#004e94] mb-2 mt-1"
-              name="password_guest" placeholder="*" v-model="users.password" />
-              <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ errorList && errorList.password ? errorList.password[0] : '' }}</span>
+              name="password_guest" placeholder="*" v-model="state.user.password" />
+              <span class="text-sm text-red-500 font-semibold tracking-wide" >{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.password && state.errors._data.errors.password[0]}}</span>
   
             <div class="flex justify-center items-center mb-3 text-center">
               <button type="submit" name="go-to-home-page"
@@ -155,9 +155,39 @@
 
 
 <script>
-import axios from 'axios';
 import NestedModal from './register-acc.vue';
 
+const state = reactive({
+  errors: [],
+  user:{
+    username: null,
+    password: null
+  }
+})
+
+async function handleLogin(){
+  const params = {
+    username: state.user.email,
+    password: state.user.username
+  }
+  try{
+    const response = await $fetch(`http://127.0.0.1:8000/api/login`, {
+    method: 'POST',
+    body: params
+  })
+
+  if(response.data){
+    localStorage.setItem('_token', response.data.token)
+    navigateTo('/User');
+  }
+
+  }
+  catch(error){
+    state.errors = error.response
+    console.log(error.response)
+    console.log('error', error)
+  }
+}
 
 export default {
   props: {
@@ -185,30 +215,6 @@ export default {
 
 
   methods: {
-    login() {
-      axios.post(`http://127.0.0.1:8000/api/login`, this.users)
-        .then(res => {
-          console.log(res, 'res');
-          alert(res.data.status);
-
-          this.clearFormData();
-          this.errorList = '';
-
-          this.isLoading = false;
-          this.isLoadingTitle = "Loading";
-        })
-        .catch(error => {
-          console.log(error, 'errors');
-
-          if (error.response) {
-            if (error.response.status == 422) {
-              this.errorList = error.response.data.errors;
-            }
-          }
-          this.isLoading = false;
-        });
-    },
-
     closeModal() {
       this.$emit('close');
     },
