@@ -257,7 +257,8 @@ async function Register() {
     })
 
     if (response.data) {
-      navigateTo('/User');
+        localStorage.setItem('_token', response.data.token)
+      navigateTo('/guest');
     }
   }
   catch (error) {

@@ -76,13 +76,22 @@
   </div>
 </template>
 
-<script setup>
-const confirmLogout = () => {
-  const result = window.confirm('Are you sure you want to log out?');
+<script>
+export default {
+  methods: {
+    confirmLogout() {
+      // Display confirmation dialog
+      const result = window.confirm('Are you sure you want to log out?');
 
-  if (result) {
-    alert('Logging out...');
-    this.$router.push('/');
-  }
+      // If user confirms, proceed with logout logic
+      if (result) {
+        // Add your logout logic here
+        alert('Logging out...');
+
+        // For demonstration purposes, let's navigate to the admin login page
+        this.$router.push('/');
+      }
+    },
+  },
 };
 </script>
