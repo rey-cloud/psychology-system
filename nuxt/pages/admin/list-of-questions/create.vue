@@ -3,34 +3,34 @@
     <div class="max-w-md mx-auto bg-white p-8 border rounded shadow">
       <div class="mb-4">
         <h4 class="text-2xl font-bold">Add Question</h4>
-        <nuxt-link to="/admin/questions" class="text-blue-500">Back</nuxt-link>
+        <nuxt-link to="/admin/list-of-questions" class="text-blue-500">Back</nuxt-link>
       </div>
 
       <form @submit.prevent="saveQuestion">
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Question Name:</label>
-          <span v-if="this.errorList.q_name" class="text-red-500">{{ this.errorList.q_name[0] }}</span>
-          <input type="text" v-model="question.q_name" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.question_title" class="text-red-500">{{ this.errorList.question_title[0] }}</span>
+          <input type="text" v-model="question.question_title" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 1:</label>
-          <span v-if="this.errorList.q_1" class="text-red-500">{{ this.errorList.q_1[0] }}</span>
-          <input type="text" v-model="question.q_1" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_one" class="text-red-500">{{ this.errorList.option_one[0] }}</span>
+          <input type="text" v-model="question.option_one" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 2:</label>
-          <span v-if="this.errorList.q_2" class="text-red-500">{{ this.errorList.q_2[0] }}</span>
-          <input type="text" v-model="question.q_2" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_two" class="text-red-500">{{ this.errorList.option_two[0] }}</span>
+          <input type="text" v-model="question.option_two" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 3:</label>
-          <span v-if="this.errorList.q_3" class="text-red-500">{{ this.errorList.q_3[0] }}</span>
-          <input type="text" v-model="question.q_3" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_three" class="text-red-500">{{ this.errorList.option_three[0] }}</span>
+          <input type="text" v-model="question.option_three" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 4:</label>
-          <span v-if="this.errorList.q_4" class="text-red-500">{{ this.errorList.q_4[0] }}</span>
-          <input type="text" v-model="question.q_4" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_four" class="text-red-500">{{ this.errorList.option_four[0] }}</span>
+          <input type="text" v-model="question.option_four" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div>
           <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
@@ -48,11 +48,11 @@ export default {
   data() {
     return {
       question: {
-        q_name: "",
-        q_1: "",
-        q_2: "",
-        q_3: "",
-        q_4: ""
+        question_title: "",
+        option_one: "",
+        option_two: "",
+        option_three: "",
+        option_four: ""
       },
       errorList: {}
     };
@@ -60,6 +60,7 @@ export default {
   methods: {
     saveQuestion() {
       //alert("am here");
+      console.log('Data to be sent:', this.question);
 
       var myThis = this;
 
@@ -67,11 +68,11 @@ export default {
         console.log(res, 'res');
         alert(res.data.message);
 
-        this.question.q_name = '';
-        this.question.q_1 = '';
-        this.question.q_2 = '';
-        this.question.q_3 = '';
-        this.question.q_4 = '';
+        this.question.question_title = '';
+        this.question.option_one = '';
+        this.question.option_two = '';
+        this.question.option_three = '';
+        this.question.option_four = '';
 
       })
         .catch(function (error) {

@@ -3,37 +3,37 @@
     <div class="max-w-md mx-auto bg-white p-8 border rounded shadow">
       <div class="mb-4">
         <h4 class="text-2xl font-bold">Edit Question</h4>
-        <nuxt-link to="/admin/questions" class="text-blue-500">Back</nuxt-link>
+        <nuxt-link to="/admin/list-of-questions" class="text-blue-500">Back</nuxt-link>
       </div>
 
-      <form @submit.prevent="saveQuestion">
+      <form @submit.prevent="updateQuestion">
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Question Name:</label>
-          <span v-if="this.errorList.q_name" class="text-red-500">{{ this.errorList.q_name[0] }}</span>
-          <input type="text" v-model="question.q_name" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.question_title" class="text-red-500">{{ this.errorList.question_title[0] }}</span>
+          <input type="text" v-model="question.question_title" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 1:</label>
-          <span v-if="this.errorList.q_1" class="text-red-500">{{ this.errorList.q_1[0] }}</span>
-          <input type="text" v-model="question.q_1" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_one" class="text-red-500">{{ this.errorList.option_one[0] }}</span>
+          <input type="text" v-model="question.option_one" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 2:</label>
-          <span v-if="this.errorList.q_2" class="text-red-500">{{ this.errorList.q_2[0] }}</span>
-          <input type="text" v-model="question.q_2" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_two" class="text-red-500">{{ this.errorList.option_two[0] }}</span>
+          <input type="text" v-model="question.option_two" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 3:</label>
-          <span v-if="this.errorList.q_3" class="text-red-500">{{ this.errorList.q_3[0] }}</span>
-          <input type="text" v-model="question.q_3" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_three" class="text-red-500">{{ this.errorList.option_three[0] }}</span>
+          <input type="text" v-model="question.option_three" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Choice 4:</label>
-          <span v-if="this.errorList.q_4" class="text-red-500">{{ this.errorList.q_4[0] }}</span>
-          <input type="text" v-model="question.q_4" class="mt-1 p-2 border rounded w-full" />
+          <span v-if="this.errorList.option_four" class="text-red-500">{{ this.errorList.option_four[0] }}</span>
+          <input type="text" v-model="question.option_four" class="mt-1 p-2 border rounded w-full" />
         </div>
         <div>
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
         </div>
       </form>
     </div>
@@ -53,45 +53,35 @@ export default {
     };
   },
   mounted() {
-    this.questionId = this.$route.params.id
-    //alert(this.questionId);
-
+    this.questionId = this.$route.params.id;
     this.getQuestion(this.questionId);
   },
   methods: {
-
     getQuestion(questionId) {
       axios.get(`http://127.0.0.1:8000/api/questions/${questionId}/edit`).then(res => {
         console.log(res);
         this.question = res.data.question;
       });
     },
-
-    saveQuestion() {
-      //alert("am here");
-
+    updateQuestion() {
       var myThis = this;
 
-      axios.post(`http://127.0.0.1:8000/api/questions`, this.question).then(res => {
+      axios.put(`http://127.0.0.1:8000/api/questions/${this.questionId}/edit`, this.question).then(res => {
         console.log(res, 'res');
         alert(res.data.message);
 
-        this.question.q_name = '';
-        this.question.q_1 = '';
-        this.question.q_2 = '';
-        this.question.q_3 = '';
-        this.question.q_4 = '';
+        this.errorList = {}; 
 
       })
-        .catch(function (error) {
-          console.log(error, 'errors')
+      .catch(function (error) {
+        console.log(error, 'errors')
 
-          if (error.response) {
-            if (error.response.status == 422) {
-              myThis.errorList = error.response.data.errors;
-            }
+        if (error.response) {
+          if (error.response.status == 422) {
+            myThis.errorList = error.response.data.errors;
           }
-        });
+        }
+      });
     }
   }
 };
