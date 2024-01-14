@@ -10,7 +10,7 @@
       <!-- Switch button -->
       <section class="mt-6 mb-3 cursor-default font-semibold text-gray-800 text-lg flex justify-between">
         <div class="flex items-center">
-          <img class="w-auto h-6 mr-1" src="assets/img/login.png" alt="login" />
+          <img class="w-auto h-6 mr-1" src="assets/img/forms/login.png" alt="login" />
           <h1 class="py-2 text-start font-bold">Login</h1>
         </div>
         <div class="flex justify-center">
@@ -47,7 +47,7 @@
               <label class="mr-2 text-gray-800">Password:</label>
             </div>
             <span @mouseover="showPassword" @mouseout="hidePassword">
-              <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/eye.png"
+              <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/forms/eye.png"
                 alt="show_password" /></span>
           </div>
           <input :type="inputType" id="passwordGuest"
@@ -92,7 +92,7 @@
           <button
             class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#4eb876] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
             <div class="flex justify-center items-center m-auto">
-              <img class="w-auto h-6 mr-2" src="assets/img/google.png" alt="google" />
+              <img class="w-auto h-6 mr-2" src="assets/img/socials/google.png" alt="google" />
               <p class="m-auto mr-1 lg:block hidden">Login with</p>
               <p class="m-auto">Google</p>
             </div>
@@ -100,7 +100,7 @@
           <button
             class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#0041de] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
             <div class="flex justify-center items-center m-auto">
-              <img class="w-auto h-6 mr-2" src="assets/img/facebook.png" alt="fb" />
+              <img class="w-auto h-6 mr-2" src="assets/img/socials/facebook.png" alt="fb" />
               <p class="m-auto mr-1 lg:block hidden">Login with</p>
               <p class="m-auto">Facebook</p>
             </div>
@@ -122,7 +122,8 @@
               <label class="mr-2 text-gray-800">Password:</label>
             </div>
             <span @mouseover="showPassword" @mouseout="hidePassword">
-              <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/eye.png" alt="show" />
+              <img class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" src="assets/img/forms/eye.png"
+                alt="show" />
             </span>
           </div>
           <input :type="inputType" id="passwordAdmin"

@@ -20,7 +20,7 @@
         </div>
       </section>
       <section class="flex-1 flex items-center justify-center">
-        <img class="lg:h-[700px] w-auto" src="assets/img/online_exam.gif" alt="writing" />
+        <img class="lg:h-[700px] w-auto" src="assets/img/landing-page/online_exam.gif" alt="writing" />
       </section>
     </div>
   </div>

@@ -9,7 +9,7 @@
 
       <form @submit.prevent="registerAcc()" class="w-[400px] lg:w-[700px] duration-300">
         <section class="mt-6 mb-5 cursor-default font-semibold text-gray-800 text-lg flex items-center">
-          <img class="w-auto h-6 mr-1" src="assets/img/add-user.png" alt="add-user">
+          <img class="w-auto h-6 mr-1" src="assets/img/forms/add-user.png" alt="add-user">
           <h1 class="font-bold">Create an Account</h1>
         </section>
 
@@ -100,7 +100,7 @@
                 <div class="lg:flex block duration-300">
                   <div class="flex justify-center">
                     <label class="text-gray-800">Phone No:</label>
-                    <img class="ml-1 w-auto h-4 m-auto" src="/assets/img/ph-flag.png" alt="ph">
+                    <img class="ml-1 w-auto h-4 m-auto" src="/assets/img/forms/ph-flag.png" alt="ph">
                   </div>
                 </div>
                 <input
@@ -179,7 +179,7 @@
                   </div>
                   <span class="w-auto h-5 opacity-75 hover:bg-[#9aaaa1] rounded-lg" @mouseover="showPassword"
                     @mouseout="hidePassword">
-                    <img class="w-auto h-5 opacity-75 rounded-lg" src="assets/img/eye.png" alt="show">
+                    <img class="w-auto h-5 opacity-75 rounded-lg" src="assets/img/forms/eye.png" alt="show">
                   </span>
                 </div>
                 <input :type="confirmPasswordInputType"
