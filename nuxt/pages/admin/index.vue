@@ -22,6 +22,8 @@
 
     <section class=" mt-44 px-20 mb-16">
 
+      {{ state.user }}
+
       <div class="mb-8">
         <button
           class="border-2 rounded-md px-3 py-1 bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">&plus;
@@ -76,22 +78,31 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    confirmLogout() {
-      // Display confirmation dialog
-      const result = window.confirm('Are you sure you want to log out?');
+<script setup>
 
-      // If user confirms, proceed with logout logic
-      if (result) {
-        // Add your logout logic here
-        alert('Logging out...');
+const state = reactive({
+    user: null
+})
+    onMounted(()=>{
+        fetchUser()
+    })
 
-        // For demonstration purposes, let's navigate to the admin login page
-        this.$router.push('/');
-      }
-    },
-  },
-};
+    async function fetchUser(){
+    try{
+        const response = await $fetch(`http://127.0.0.1:8000/api/user`, {
+        method: 'GET',
+        headers:{
+            'Authorization': 'Bearer ' + localStorage.getItem('_token')
+        }
+        })
+        if(response.data){
+            state.user = response.data
+        }
+        }
+    catch(error){
+        state.errors = error.response
+        console.log('error', error)
+    }
+    }
+
 </script>
