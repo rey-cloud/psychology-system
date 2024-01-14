@@ -25,12 +25,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import "./assets/scroll-bar.css";
 
-export default {
-
-}
 </script>
 
 <style scoped>

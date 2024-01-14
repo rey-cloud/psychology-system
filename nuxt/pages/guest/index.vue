@@ -1,7 +1,5 @@
 <template lang="">
-  <Head>
-    <Title>Home | Psyche Assist</Title>
-  </Head>
+  <Title>Home | Psyche Assist</Title>
   
   <div class="bg-[#e4e4e4] h-auto w-full absolute top-0 text-[#4f608a]">
 
@@ -99,14 +97,8 @@
   </div>
 </template>
 
-<script>
-import Navbar from '~/layouts/navbar.vue';
-import Footer from '~/layouts/footer.vue';
+<script setup>
+import Navbar from '~/components/navbar.vue';
+import Footer from '~/components/footer.vue';
 
-export default {
-  components: {
-    Navbar,
-    Footer
-  },
-}
 </script>

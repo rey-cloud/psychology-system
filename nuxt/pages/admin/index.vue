@@ -4,7 +4,7 @@
       <section class="justify-between px-20 flex h-32 w-full bg-[#2c3840] shadow-lg fixed top-0 z-50">
         <div class="flex">
           <nuxt-link to="/admin/profile" class="m-auto hover:scale-110 duration-300 ease-in-out">
-            <img class="w-auto h-16" src="/assets/img/admin/admin-logo.png" alt="admin">
+            <img class="w-auto h-16" src="/assets/img/admin/logo.png" alt="admin">
             <div class="block text-[9px] text-center">
               view profile
             </div>
@@ -76,22 +76,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    confirmLogout() {
-      // Display confirmation dialog
-      const result = window.confirm('Are you sure you want to log out?');
+<script setup>
+const confirmLogout = () => {
+  const result = window.confirm('Are you sure you want to log out?');
 
-      // If user confirms, proceed with logout logic
-      if (result) {
-        // Add your logout logic here
-        alert('Logging out...');
-
-        // For demonstration purposes, let's navigate to the admin login page
-        this.$router.push('/');
-      }
-    },
-  },
+  if (result) {
+    alert('Logging out...');
+    this.$router.push('/');
+  }
 };
 </script>
