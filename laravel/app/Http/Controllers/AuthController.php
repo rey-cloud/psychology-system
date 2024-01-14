@@ -74,8 +74,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout() {
-        return response()->json('this is my logout');
+    public function logout(Request $payload){
+        $user = $payload->user();
+        $user->tokens()->delete();
+        return "successfully logged out";
     }
 
     public function show(Request $payload)
