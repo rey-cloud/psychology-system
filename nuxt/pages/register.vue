@@ -268,10 +268,6 @@ async function Register() {
     })
 
     if (response.data) {
-<<<<<<< HEAD
-=======
-        localStorage.setItem('_token', response.data.token)
->>>>>>> refs/remotes/origin/master
       navigateTo('/guest');
     }
   }
