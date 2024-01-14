@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title>Welcome | Psyche Assist</Title>
+  </Head>
   <div class="flex items-center justify-center min-h-screen bg-[#e4e4e4]">
     <div class="w-full xl:max-w-screen-xl max-w-screen-lg lg:flex block duration-300 xl:mt-0 mt-20">
       <section class="flex-1 m-auto xl:pl-8 lg:px-0 duration-300 lg:max-w-screen-lg max-w-screen-md px-10">
@@ -12,7 +15,7 @@
         </p>
         <div class="flex justify-center lg:justify-start">
           <button @click="openModal"
-            class="mt-5 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white border-[#2e5679] hover:text-[#002951] transition duration-300 ease-in-out">
+            class="mt-5 py-2 px-10 shadow-md tracking-wider rounded-lg hover:bg-[#febd5b] bg-[#5c6f9f] font-semibold text-white hover:text-[#445277] transition duration-300 ease-in-out">
             Let's Go!
           </button>
 
@@ -46,6 +49,6 @@ export default {
     closeModal() {
       this.isModalOpen = false;
     },
-  },
+  }
 };
 </script>
