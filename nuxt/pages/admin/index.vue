@@ -33,35 +33,35 @@
           class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/users.png" alt="">
-            <p class="m-auto font-bold">Users: <span class="text-green-500 text-xl">0</span></p>
+            <p class="m-auto font-bold">Users</p>
           </div>
         </nuxt-link>
         <nuxt-link to="/admin/list-of-admins"
           class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/admins.png" alt="">
-            <p class="m-auto font-bold">Admins: <span class="text-green-500 text-xl">0</span></p>
+            <p class="m-auto font-bold">Admins</p>
           </div>
         </nuxt-link>
         <nuxt-link to="/admin/list-of-results"
           class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/results.png" alt="">
-            <p class="m-auto font-bold">Total Results: <span class="text-green-500 text-xl">0</span></p>
+            <p class="m-auto font-bold">Total Results</p>
           </div>
         </nuxt-link>
         <nuxt-link to="/admin/list-of-questions"
           class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/questions.png" alt="">
-            <p class="m-auto font-bold">Questions: <span class="text-green-500 text-xl">0</span></p>
+            <p class="m-auto font-bold">Questions</p>
           </div>
         </nuxt-link>
         <nuxt-link to="/admin/list-of-diagnosis"
           class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/diagnosis.png" alt="">
-            <p class="m-auto font-bold">Diagnosis: <span class="text-green-500 text-xl">0</span></p>
+            <p class="m-auto font-bold">Diagnosis</p>
           </div>
         </nuxt-link>
       </div>

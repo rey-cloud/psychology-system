@@ -5,11 +5,12 @@ namespace Database\Factories;
 use App\Models\Diagnosis;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Diagnosis>
  */
-class TaskFactory extends Factory
+class DiagnosisFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +19,11 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create();
+
         return [
-            'user_id' => User::all()->random()->id,
-            'total_score' => $this->faker->numberBetween(0, 100), 
-            'diagnosis_id' => Diagnosis::all()->random()->id
+            'diagnosis' => $faker->sentence,
+            'recommendations' => $faker->paragraph,
         ];
     }
 }

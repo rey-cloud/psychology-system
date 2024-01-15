@@ -27,7 +27,7 @@
           </thead>
           <tbody>
             <tr v-for="(question, index) in questions" :key="index">
-              <td class="p-2 border align-middle">Q00{{ question.id }}</td>
+              <td class="p-2 border align-middle">{{ question.id }}</td>
               <td class="p-2 border align-middle">{{ question.question_title }}</td>
               <td class="p-2 border align-middle">{{ question.option_one }}</td>
               <td class="p-2 border align-middle">{{ question.option_two }}</td>

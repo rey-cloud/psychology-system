@@ -85,4 +85,33 @@ class AuthController extends Controller
         $user = $payload->user();
         return new UserResource($user);
     }
+
+    public function showAllGuest()
+{
+    // Retrieve only users with type 'guest'
+    $users = User::where('type', 'guest')->get();
+    return UserResource::collection($users);
+}
+
+public function showAllAdmin()
+{
+    // Retrieve only users with type 'admin'
+    $users = User::where('type', 'admin')->get();
+    return UserResource::collection($users);
+}
+
+    public function read($id) 
+    {
+        $user = user::find($id);
+
+        if ($user) {
+            return response()->json([
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([   
+                'message' => 'User Not Found'
+            ]);
+        }
+    }
 }

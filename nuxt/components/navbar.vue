@@ -16,7 +16,7 @@
         </ul>
       </div>
       <div class="flex">
-        <nuxt-link to="/guest/test" class="m-auto">
+        <nuxt-link to="/guest/test/taking-test" class="m-auto">
           <button class="m-auto bg-[#FEBD5B] px-7 rounded-lg py-2 hover:bg-[#5c6f9f] shadow-lg font-semibold hover:text-white text-[#445277] transition duration-300 ease-in-out tracking-wider">Take Test!</button>
         </nuxt-link>
       </div>

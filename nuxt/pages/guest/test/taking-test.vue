@@ -61,6 +61,7 @@ export default {
 
       if (isConfirmed) {
         // Your submission logic goes here
+        navigateTo('/guest/results');
         console.log('Form submitted!');
       }
     },

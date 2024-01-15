@@ -105,22 +105,22 @@
           <p class="text-center mb-5 text-gray-800">Sign in using:</p>
 
           <section class="mb-5">
-            <button
+            <a href=""
               class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#4eb876] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
               <div class="flex justify-center items-center m-auto">
                 <img class="w-auto h-6 mr-2" src="assets/img/socials/google.png" alt="google" />
                 <p class="m-auto mr-1 lg:block hidden">Login with</p>
                 <p class="m-auto">Google</p>
               </div>
-            </button>
-            <button
+            </a>
+            <a href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank"
               class="w-full mt-3 py-2 px-10 shadow-md tracking-wider rounded-lg bg-[#0041de] font-semibold text-white transition duration-300 ease-in-out hover:opacity-75 flex">
               <div class="flex justify-center items-center m-auto">
                 <img class="w-auto h-6 mr-2" src="assets/img/socials/facebook.png" alt="fb" />
                 <p class="m-auto mr-1 lg:block hidden">Login with</p>
                 <p class="m-auto">Facebook</p>
               </div>
-            </button>
+            </a>
           </section>
         </section>
       </form>
