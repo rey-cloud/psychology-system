@@ -207,7 +207,7 @@
 
           </section>
 
-          <section class="mt-3 flex mb-2">
+          <!-- <section class="mt-3 flex mb-2">
             <input type="checkbox" id="termsCheckbox" class="form-checkbox text-[#5c6f9f]">
             <label for="termsCheckbox" class="text-gray-800 ml-2 mr-1">
               I have carefully reviewed and accepted the terms of
@@ -215,7 +215,7 @@
                 <button class="text-blue-800 font-semibold underline hover:opacity-60">PsycheAssist.</button>
               </nuxt-link>
             </label>
-          </section>
+          </section> -->
 
           <section class="flex justify-center items-center">
             <button type="submit" name="register"
@@ -268,7 +268,7 @@ async function Register() {
     })
 
     if (response.data) {
-      navigateTo('/guest');
+      navigateTo('/login');
     }
   }
   catch (error) {
