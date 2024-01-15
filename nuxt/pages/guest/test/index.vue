@@ -1,5 +1,4 @@
 <template>
-  <Title>Test | Psyche Assist</Title>
 
   <div class="bg-[#878889] h-screen w-full flex items-center justify-center tracking-wide">
     <div class="bg-[#d0d9e7] p-8 rounded-md shadow-md w-1/2">
