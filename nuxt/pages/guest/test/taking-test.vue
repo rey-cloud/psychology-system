@@ -6,10 +6,12 @@
       <h1 class="font-bold text-lg text-[#FEBD5B] mt-10">Instruction</h1>
       <p class="text-sm">Answering all questions is required before exiting this page. Leaving without completing the
         questions will result in non-submission.</p>
-      <hr class="mt-5 mb-5">
 
-      <div v-for="(question, index) in questions" :key="index" class="mb-4">
+      <hr class="mt-5 mb-10">
+
+      <div v-for="(question, index) in questions" :key="index" class="mb-4 bg-[#92999e] rounded-lg p-5">
         <div class="font-bold">{{ question.question_title }}</div>
+        <hr class="mt-2 mb-2">
         <div class="mt-3 text-sm">
           <label v-for="(option, optionIndex) in question.options" :key="optionIndex"
             class="flex items-center hover:bg-gray-400 p-2 rounded-full">

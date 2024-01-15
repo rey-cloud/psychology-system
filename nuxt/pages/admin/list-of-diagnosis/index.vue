@@ -24,7 +24,7 @@
           </thead>
           <tbody>
             <tr v-for="(diagnosis, index) in diagnosis" :key="index">
-              <td class="p-2 border align-middle">{{ diagnosis.id }}</td>
+              <td class="p-2 border align-middle">D00{{ diagnosis.id }}</td>
               <td class="p-2 border align-middle">{{ diagnosis.diagnosis }}</td>
               <td class="p-2 border align-middle">{{ diagnosis.recommendation }}</td>
               <td class="p-2 border align-middle">

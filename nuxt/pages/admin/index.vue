@@ -54,7 +54,7 @@
           class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/questions.png" alt="">
-            <p class="m-auto font-bold">Questions: <span class="text-green-500 text-xl">(here goes retrieval)</span></p>
+            <p class="m-auto font-bold">Questions: <span class="text-green-500 text-xl">0</span></p>
           </div>
         </nuxt-link>
         <nuxt-link to="/admin/list-of-diagnosis"
