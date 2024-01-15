@@ -12,8 +12,8 @@
           <p class="m-auto ml-3">Welcome, {{ state.user ? state.user.first_name : '...' }}!</p>
         </div>
         <div class="flex">
-          <button @click="Logout" class="m-auto border px-3 py-2 hover:bg-[#a4aaad] hover:text-[#2c3840] rounded-lg flex"
-            id="logout">Log
+          <button @click="confirmLogout"
+            class="m-auto border px-3 py-2 hover:bg-[#a4aaad] hover:text-[#2c3840] rounded-lg flex" id="logout">Log
             out
           </button>
         </div>
@@ -62,13 +62,6 @@
           <div class="flex">
             <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/diagnosis.png" alt="">
             <p class="m-auto font-bold">Diagnosis: <span class="text-green-500 text-xl">0</span></p>
-          </div>
-        </nuxt-link>
-        <nuxt-link to="/admin/list-of-terms"
-          class="w-full flex h-32 p-5 border-2 rounded-lg bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors">
-          <div class="flex">
-            <img class="w-auto h-16 mr-5 m-auto" src="/assets/img/admin/terms.png" alt="">
-            <p class="m-auto font-bold">Terms: <span class="text-green-500 text-xl">0</span></p>
           </div>
         </nuxt-link>
       </div>
