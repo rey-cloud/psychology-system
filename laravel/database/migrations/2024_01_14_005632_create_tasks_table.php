@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('priority')->default('medium');
+            $table->string('total_score');
+            $table->string('diagnosis_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('diagnosis_id')
+                ->references('id')
+                ->on('diagnosis')
                 ->onDelete('cascade');
             $table->timestamps();
         });
