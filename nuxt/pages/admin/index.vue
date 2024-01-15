@@ -9,7 +9,7 @@
               view profile
             </div>
           </nuxt-link>
-          <p class="m-auto ml-3">Welcome, Admin!</p>
+          <p class="m-auto ml-3">Welcome, {{ state.user ? state.user.first_name : '...' }}!</p>
         </div>
         <div class="flex">
           <button @click="Logout" class="m-auto border px-3 py-2 hover:bg-[#a4aaad] hover:text-[#2c3840] rounded-lg flex"
@@ -21,8 +21,6 @@
     </nav>
 
     <section class=" mt-44 px-20 mb-16">
-
-      {{ state.user }}
 
       <div class="mb-8">
         <button
@@ -121,6 +119,12 @@ async function Logout() {
   catch (error) {
     state.errors = error.response
     console.log('error', error)
+  }
+}
+
+function confirmLogout() {
+  if (window.confirm("Are you sure you want to log out?")) {
+    Logout();
   }
 }
 
