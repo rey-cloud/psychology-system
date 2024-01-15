@@ -5,21 +5,20 @@
       <h1 class="text-xl font-bold mb-4">Instruction</h1>
       <p class="text-gray-700 mb-4">Within this test, you will
         encounter a set of
-        options or
         choices. Your
         task
         is
         to carefully
-        evaluate each option
+        evaluate each choices
         and select the one that best aligns with your current mental state. Choose the option that feels most
         suitable to you at the moment. Good luck!</p>
       <h1 class="text-xl font-bold mb-4">Proceed to Questions?</h1>
       <div class=" justify-center flex gap-5">
         <nuxt-link
-          class="py-2 px-4 shadow-md tracking-wider rounded-md bg-[#B9E0A5] hover:opacity-75 font-semibold text-[#002951] transition duration-300 ease-in-out"
-          to="/guest/test/taking">Yes</nuxt-link>
+          class="py-2 px-10 shadow-md tracking-wider rounded-md bg-[#B9E0A5] hover:opacity-75 font-semibold text-[#002951] transition duration-300 ease-in-out"
+          to="/guest/test/taking-test">Yes</nuxt-link>
         <nuxt-link
-          class="py-2 px-4 shadow-md tracking-wider rounded-md bg-[#FF9999] hover:opacity-75 font-semibold text-[#002951] transition duration-300 ease-in-out"
+          class="py-2 px-10 shadow-md tracking-wider rounded-md bg-[#FF9999] hover:opacity-75 font-semibold text-[#002951] transition duration-300 ease-in-out"
           to="/guest">No</nuxt-link>
       </div>
     </div>
