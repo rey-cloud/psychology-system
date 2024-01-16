@@ -50,10 +50,10 @@
   
 <script setup>
 import { reactive, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';  // Add useRouter and useRoute imports
+import { useRouter, useRoute } from 'vue-router';  
 
 const route = useRoute();
-const router = useRouter();  // Initialize router
+const router = useRouter();  
 
 const state = reactive({
   errors: null,
@@ -64,22 +64,25 @@ const state = reactive({
   },
 });
 
-
-onMounted(async () => {
+const getDiagnosis = async () => {
   const diagnosisId = route.params.id;
   try {
-    const response = await $fetch(`http://127.0.0.1:8000/api/diagnosis/${diagnosisId}/edit`);
+    const response = await $fetch(`http://127.0.0.1:8000/api/diagnosis/${diagnosisId}`);
     console.log('API response:', response);
 
-    if (response.data) {
-      state.diagnosis = response.data;
+    if (response.data && response.data.diagnosis) {
+      state.diagnosis = response.data.diagnosis;
+    } else if (response.data && response.data.message) {
+      console.error('API Error:', response.data.message);
     } else {
       console.error('No data received from the API.');
     }
   } catch (error) {
     console.error('Error fetching data from the API:', error);
   }
-});
+};
+
+onMounted(getDiagnosis);
 
 async function updateDiagnosis() {
   const diagnosisId = route.params.id;
@@ -106,4 +109,5 @@ async function updateDiagnosis() {
   }
 }
 </script>
+
   

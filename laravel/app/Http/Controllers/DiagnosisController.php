@@ -34,7 +34,6 @@ class DiagnosisController extends Controller
     return new DiagnosisCreateResource($newDiagnosis);
 }
 
-
     public function read($id)
     {
         $diagnosis = Diagnosis::find($id);
@@ -45,10 +44,12 @@ class DiagnosisController extends Controller
             ]);
         } else {
             return response()->json([
+                'diagnosis' => (object) [], // Return an empty object for the diagnosis
                 'message' => 'Diagnosis Not Found'
             ]);
         }
     }
+
 
     public function update(UpdateDiagnosisRequest $payload, $id)
     {
