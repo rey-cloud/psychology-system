@@ -1,33 +1,46 @@
 <template>
-    <div class="container mx-auto p-4">
-      <div class="max-w-md mx-auto bg-white p-8 border rounded shadow">
-        <div class="mb-5 flex justify-between">
-          <nuxt-link to="/admin/list-of-diagnosis"><button
-              class="border-2 rounded-md px-3 py-1 bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors text-white">
-              &lt; Back</button></nuxt-link>
-          <h4 class="text-2xl font-bold">New Diagnosis</h4>
-        </div>
+  <div class="container mx-auto p-4 flex justify-center items-center min-h-screen bg-[#e4e4e4]">
+    <div class="max-w-md w-full bg-white p-8 border rounded shadow-md">
+      <div class="mb-5 flex justify-between">
+        <nuxt-link to="/admin/list-of-diagnosis">
+          <button
+            class="border-2 rounded-md px-3 py-1 bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors text-white tracking-wide">
+            &lt; Back
+          </button>
+        </nuxt-link>
+        <h4 class="text-2xl font-bold">New Diagnosis</h4>
+      </div>
 
       <form @submit.prevent="saveDiagnosis">
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Diagnosis:</label>
-          <span class="text-red-500">{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.diagnosis && state.errors._data.errors.diagnosis[0]}}</span>
-          <input v-model="state.diagnosis.diagnosis" class="mt-1 p-2 border rounded w-full" />
+          <input v-model="state.diagnosis.diagnosis" class="mt-1 p-2 border-2 rounded w-full"
+            :class="{ 'border-red-500': state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.diagnosis }" />
+          <div class="text-red-500 text-sm font-semibold tracking-wide">{{ state.errors && state.errors._data &&
+            state.errors._data.errors &&
+            state.errors._data.errors.diagnosis && state.errors._data.errors.diagnosis[0] }}</div>
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Recommendation:</label>
-          <span class="text-red-500">{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.recommendation && state.errors._data.errors.recommendation[0]}}</span>
-          <input v-model="state.diagnosis.recommendation" class="mt-1 p-2 border rounded w-full" />
+          <input v-model="state.diagnosis.recommendation" class="mt-1 p-2 border-2 rounded w-full"
+            :class="{ 'border-red-500': state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.recommendation }" />
+          <div class="text-red-500 text-sm font-semibold tracking-wide">{{ state.errors && state.errors._data &&
+            state.errors._data.errors &&
+            state.errors._data.errors.recommendation && state.errors._data.errors.recommendation[0] }}</div>
         </div>
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Trigger:</label>
-          <span class="text-red-500">{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.trigger && state.errors._data.errors.trigger[0]}}</span>
-          <input v-model="state.diagnosis.trigger" class="mt-1 p-2 border rounded w-full" />
+          <input v-model="state.diagnosis.trigger" class="mt-1 p-2 border-2 rounded w-full"
+            :class="{ 'border-red-500': state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.trigger }" />
+          <div class="text-red-500 text-sm font-semibold tracking-wide">{{ state.errors && state.errors._data &&
+            state.errors._data.errors &&
+            state.errors._data.errors.trigger && state.errors._data.errors.trigger[0] }}</div>
         </div>
 
         <div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
-          </div>
+          <button type="submit"
+            class="border-2 rounded-md px-3 w-full py-1 bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors text-white tracking-wider">Save</button>
+        </div>
       </form>
     </div>
   </div>

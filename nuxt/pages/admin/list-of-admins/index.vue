@@ -14,7 +14,7 @@
         <table class="w-full border-collapse border border-gray-300">
           <thead class="bg-[#92999e]">
             <tr>
-              <th class="p-2 border">ID</th>
+              <th class="p-2 border">#</th>
               <th class="p-2 border">Name</th>
               <th class="p-2 border">Birth Date</th>
               <th class="p-2 border">Gender</th>
@@ -27,16 +27,16 @@
           </thead>
           <tbody>
             <tr v-for="(user, index) in state.users" :key="index">
-              <td class="p-2 border align-middle">{{ user.id }}</td>
+              <td class="p-2 border align-middle">{{ index + 1 }}</td>
               <td class="p-2 border align-middle">{{ user.first_name }} {{ user.last_name }}</td>
-              <td class="p-2 border align-middle">{{ user.birth_date }}</td>
+              <td class="p-2 border align-middle">{{ date(user.birth_date) }}</td>
               <td class="p-2 border align-middle">{{ user.gender }}</td>
               <td class="p-2 border align-middle">{{ user.phone }}</td>
               <td class="p-2 border align-middle">{{ user.address }}</td>
               <td class="p-2 border align-middle">{{ user.username }}</td>
               <td class="p-2 border align-middle">{{ user.email }}</td>
               <!-- Assuming you don't want to display the password -->
-              <td class="p-2 border align-middle">*** Hidden ***</td>
+              <td class="p-2 border align-middle">**hidden**</td>
             </tr>
           </tbody>
         </table>
@@ -71,6 +71,12 @@ async function fetchUser() {
     state.errors = error.response;
     console.log('error', error);
   }
+}
+
+function date(dateString) {
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', options);
 }
 </script>
 

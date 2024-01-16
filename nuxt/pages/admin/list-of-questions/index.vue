@@ -16,7 +16,8 @@
         <table class="w-full border-collapse border border-gray-300">
           <thead class="bg-[#92999e]">
             <tr>
-              <th class="p-2 border">ID</th>
+              <th class="p-2 border">#</th>
+              <th class="p-2 border">Question ID</th>
               <th class="p-2 border">Question Title</th>
               <th class="p-2 border">Option 1</th>
               <th class="p-2 border">Option 2</th>
@@ -27,7 +28,8 @@
           </thead>
           <tbody>
             <tr v-for="(question, index) in questions" :key="index">
-              <td class="p-2 border align-middle">{{ question.id }}</td>
+              <td class="p-2 border align-middle">{{ index + 1 }}</td>
+              <td class="p-2 border align-middle">Q-00{{ question.id }}</td>
               <td class="p-2 border align-middle">{{ question.question_title }}</td>
               <td class="p-2 border align-middle">{{ question.option_one }}</td>
               <td class="p-2 border align-middle">{{ question.option_two }}</td>
