@@ -11,7 +11,7 @@
         <h4 class="text-2xl font-bold">Edit Diagnosis</h4>
       </div>
 
-      <form @submit.prevent="updateDiagnosis">
+      <form @submit.prevent="updateDiagnosis" v-if="state.diagnosis">
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-600">Diagnosis:</label>
           <input v-model="state.diagnosis.diagnosis" class="mt-1 p-2 border-2 rounded w-full"
@@ -40,30 +40,45 @@
         <button type="submit"
           class="border-2 rounded-md px-3 w-full py-1 bg-[#515b62] border-[#2c3840] hover:bg-[#656e74] transition-colors text-white tracking-wider">Update</button>
       </form>
+      <div v-else>
+        <!-- Display an error message or redirect the user to an error page -->
+        <p>Error loading diagnosis data.</p>
+      </div>
     </div>
   </div>
 </template>
   
 <script setup>
 import { reactive, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';  // Add useRouter and useRoute imports
 
 const route = useRoute();
+const router = useRouter();  // Initialize router
 
 const state = reactive({
   errors: null,
   diagnosis: {
-    diagnosis: null,
-    recommendation: null,
-    trigger: null,
+    diagnosis: '',
+    recommendation: '',
+    trigger: '',
   },
 });
 
+
 onMounted(async () => {
-  // Fetch the existing diagnosis data using the provided ID
   const diagnosisId = route.params.id;
-  const response = await $fetch(`http://127.0.0.1:8000/api/diagnosis/${diagnosisId}`);
-  state.diagnosis = response.data;
+  try {
+    const response = await $fetch(`http://127.0.0.1:8000/api/diagnosis/${diagnosisId}/edit`);
+    console.log('API response:', response);
+
+    if (response.data) {
+      state.diagnosis = response.data;
+    } else {
+      console.error('No data received from the API.');
+    }
+  } catch (error) {
+    console.error('Error fetching data from the API:', error);
+  }
 });
 
 async function updateDiagnosis() {
@@ -82,7 +97,7 @@ async function updateDiagnosis() {
     });
 
     if (response.data) {
-      navigateTo('/admin/list-of-diagnosis');
+      router.push('/admin/list-of-diagnosis'); // Use router.push for navigation
     }
   } catch (error) {
     state.errors = error.response;
