@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Validator;
 class DiagnosisController extends Controller
 {
 
-    public function index() 
+    public function index()
     {
         $diagnosis = Diagnosis::get();
     return DiagnosisCreateResource::collection($diagnosis);
-    } 
+    }
 
-    public function create(CreateDiagnosisRequest $payload) 
+    public function create(CreateDiagnosisRequest $payload)
 {
     $diagnosisValue = $payload->diagnosis;
     $recommendation = $payload->recommendation;
@@ -31,11 +31,11 @@ class DiagnosisController extends Controller
         'trigger' => $trigger,
     ]);
 
-    return new DiagnosisCreateResource($newDiagnosis);            
+    return new DiagnosisCreateResource($newDiagnosis);
 }
 
 
-    public function read($id) 
+    public function read($id)
     {
         $diagnosis = Diagnosis::find($id);
 
@@ -50,7 +50,7 @@ class DiagnosisController extends Controller
         }
     }
 
-    public function update(UpdateDiagnosisRequest $payload, $id) 
+    public function update(UpdateDiagnosisRequest $payload, $id)
     {
         $diagnosis = diagnosis::find($id);
 
@@ -63,10 +63,10 @@ class DiagnosisController extends Controller
             ]);
 
             return new DiagnosisUpdateResource($diagnosis);
-        }               
+        }
     }
 
-    public function delete($id) 
+    public function delete($id)
     {
         $diagnosis = Diagnosis::find($id);
 
