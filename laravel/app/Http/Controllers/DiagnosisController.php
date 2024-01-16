@@ -2,140 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateDiagnosisRequest;
+use App\Http\Requests\UpdateDiagnosisRequest;
+use App\Http\Resources\DiagnosisCreateResource;
+use App\Http\Resources\DiagnosisUpdateResource;
 use App\Models\Diagnosis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class DiagnosisController extends Controller
 {
-    public function index() {
 
-        $diagnosis =  Diagnosis::all();
-        if ($diagnosis->count() > 0) {
+    public function index() 
+    {
+        $diagnosis = Diagnosis::get();
+    return DiagnosisCreateResource::collection($diagnosis);
+    } 
+
+    public function create(CreateDiagnosisRequest $payload) 
+{
+    $diagnosisValue = $payload->diagnosis;
+    $recommendation = $payload->recommendation;
+    $trigger = $payload->trigger;
+
+    $newDiagnosis = Diagnosis::create([
+        'diagnosis' => $diagnosisValue,
+        'recommendation' => $recommendation,
+        'trigger' => $trigger,
+    ]);
+
+    return new DiagnosisCreateResource($newDiagnosis);            
+}
+
+
+    public function read($id) 
+    {
+        $diagnosis = Diagnosis::find($id);
+
+        if ($diagnosis) {
             return response()->json([
-                'status' => 200,
                 'diagnosis' => $diagnosis
-            ], 200);
+            ]);
         } else {
             return response()->json([
-                'status' => 404,
-                'diagnosis' => 'No Record Found'
-            ], 404);
+                'message' => 'Diagnosis Not Found'
+            ]);
         }
     }
 
-    public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'diagnosis' => 'required|string|max:200',
-            'recommendation' => 'required|string|max:200'
-        ]);
+    public function update(UpdateDiagnosisRequest $payload, $id) 
+    {
+        $diagnosis = diagnosis::find($id);
 
-        if ($validator->fails()){
-            return response()->json([
-                'status' => 422,
-                'errors' => $validator->messages()
-            ], 422);
-        } else {
-            $diagnosis = Diagnosis::create([
-                'diagnosis' => $request->diagnosis,
-                'recommendation' => $request->recommendation,
+        if ($diagnosis) {
+
+            $diagnosis->update([
+                'diagnosis' => $payload->diagnosis,
+                'recommendation' => $payload->recommendation,
+                'trigger' => $payload->trigger,
             ]);
 
-            if ($diagnosis) {
-
-                return response()->json([
-                    'status' => 200,
-                    'message' => "Diagnosis Created Successfully"
-                ], 200);
-            } else {
-                return response()->json([
-                    'status' => 500,
-                    'message' => "Something Went Wrong"
-                ], 500);
-            }
-        }
+            return new DiagnosisUpdateResource($diagnosis);
+        }               
     }
 
-    public function show($id) {
-        $diagnosis = Diagnosis::find($id);
-
-        if ($diagnosis) {
-            return response()->json([
-                'status' => 200,
-                'diagnosis' => $diagnosis
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => "No Such Diagnosis Found!"
-            ], 404);
-        }
-    }
-
-    public function edit($id) {
-        $diagnosis = Diagnosis::find($id);
-
-        if ($diagnosis) {
-            return response()->json([
-                'status' => 200,
-                'diagnosis' => $diagnosis
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => "No Such Diagnosis Found!"
-            ], 404);
-        }
-    }
-
-    public function update(Request $request, int $id){
-        $validator = Validator::make($request->all(), [
-            'diagnosis' => 'required|string|max:200',
-            'recommendation' => 'required|string|max:200'
-        ]);
-
-        if ($validator->fails()){
-            return response()->json([
-                'status' => 422,
-                'errors' => $validator->messages()
-            ], 422);
-        } else {
-            $diagnosis = Diagnosis::find($id);
-
-            if ($diagnosis) {
-
-                $diagnosis->update([
-                    'diagnosis' => $request->diagnosis,
-                    'recommendation' => $request->recommendation,
-                ]);
-
-                return response()->json([
-                    'status' => 200,
-                    'message' => "Diagnosis Updated Successfully"
-                ], 200);
-            } else {
-                return response()->json([
-                    'status' => 404,
-                    'message' => "No Diagnosis Found!"
-                ], 404);
-            }
-        }
-    }
-
-    public function destroy($id) {
+    public function delete($id) 
+    {
         $diagnosis = Diagnosis::find($id);
 
         if ($diagnosis) {
             $diagnosis->delete();
+
             return response()->json([
-                'status' => 200,
-                'message' => "Diagnosis Deleted Successfully!"
-            ], 200);
+                'message' => 'Diagnosis Deleted Successfully'
+            ]);
         } else {
             return response()->json([
-                'status' => 404,
-                'message' => "No Diagnosis Found!"
-            ], 404);
+                'message' => 'Diagnosis Not Found'
+            ]);
         }
     }
 }

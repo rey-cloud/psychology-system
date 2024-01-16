@@ -7,70 +7,64 @@
               &lt; Back</button></nuxt-link>
           <h4 class="text-2xl font-bold">New Diagnosis</h4>
         </div>
-  
-        <form @submit.prevent="saveDiagnosis">
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-600">Diagnosis:</label>
-            <span v-if="this.errorList.diagnosis" class="text-red-500">{{ this.errorList.diagnosis[0] }}</span>
-            <input type="text" v-model="diagnosis.diagnosis" class="mt-1 p-2 border rounded w-full" />
-          </div>
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-600">Recommendation</label>
-            <span v-if="this.errorList.recommendation" class="text-red-500">{{ this.errorList.recommendation[0] }}</span>
-            <input type="text" v-model="diagnosis.recommendation" class="mt-1 p-2 border rounded w-full" />
-          </div>
 
-          <div>
+      <form @submit.prevent="saveDiagnosis">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-600">Diagnosis:</label>
+          <span class="text-red-500">{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.diagnosis && state.errors._data.errors.diagnosis[0]}}</span>
+          <input v-model="state.diagnosis.diagnosis" class="mt-1 p-2 border rounded w-full" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-600">Recommendation:</label>
+          <span class="text-red-500">{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.recommendation && state.errors._data.errors.recommendation[0]}}</span>
+          <input v-model="state.diagnosis.recommendation" class="mt-1 p-2 border rounded w-full" />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-600">Trigger:</label>
+          <span class="text-red-500">{{ state.errors && state.errors._data && state.errors._data.errors && state.errors._data.errors.trigger && state.errors._data.errors.trigger[0]}}</span>
+          <input v-model="state.diagnosis.trigger" class="mt-1 p-2 border rounded w-full" />
+        </div>
+
+        <div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
           </div>
-        </form>
-      </div>
+      </form>
     </div>
-  </template>
-    
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    name: "DiagnosisCreate",
-    data() {
-      return {
-        diagnosis: {
-          diagnosis: "",
-          recommendation: "",
-        },
-        errorList: {}
-      };
-    },
-    methods: {
-      saveDiagnosis() {
-        //alert("am here");
-        console.log('Data to be sent:', this.diagnosis);
-  
-        var myThis = this;
-  
-        axios.post(`http://127.0.0.1:8000/api/diagnosis`, this.diagnosis).then(res => {
-          console.log(res, 'res');
-          alert(res.data.message);
-  
-          this.errorList = {};
+  </div>
+</template>
 
-          this.diagnosis.diagnosis = '';
-          this.diagnosis.recommendation = '';
-  
-        })
-          .catch(function (error) {
-            console.log(error, 'errors')
-  
-            if (error.response) {
-              if (error.response.status == 422) {
-                myThis.errorList = error.response.data.errors;
-              }
-            }
-          });
-      }
-    }
+<script setup>
+import { reactive } from 'vue';
+
+const state = reactive({
+  errors: null,
+  diagnosis: {
+    diagnosis: null,
+    recommendation: null,
+    trigger: null,
+  },
+});
+
+async function saveDiagnosis() {
+  const params = {
+    diagnosis: state.diagnosis.diagnosis,
+    recommendation: state.diagnosis.recommendation,
+    trigger: state.diagnosis.trigger,
   };
-  </script>
-  
-    
+
+  try {
+    const response = await $fetch(`http://127.0.0.1:8000/api/diagnosis`, {
+      method: 'POST',
+      body: params,
+    });
+
+    if (response.data) {
+      navigateTo('/admin/list-of-diagnosis');
+    }
+  } catch (error) {
+    state.errors = error.response;
+    console.error(error.response);
+    console.error('error', error);
+  }
+}
+</script>

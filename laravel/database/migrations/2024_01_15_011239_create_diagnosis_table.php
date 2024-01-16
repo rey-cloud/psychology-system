@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('diagnosis');
             $table->string('recommendation');
-            $table->int('trigger');
+            $table->integer('trigger'); // Change 'int' to 'integer'
             $table->timestamps();
             $table->softDeletes();
         });

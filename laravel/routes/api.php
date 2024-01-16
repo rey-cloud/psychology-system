@@ -32,6 +32,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::resource('/tasks', TasksController::class);
 });
 
+Route::get('diagnosis', [DiagnosisController::class, 'index']);
+Route::post('diagnosis', [DiagnosisController::class, 'create']); // create diagnosis
+Route::get('diagnosis/{id}', [DiagnosisController::class, 'read']);
+Route::put('diagnosis/{id}/edit', [DiagnosisController::class, 'update']);
+Route::delete('diagnosis/{id}/delete', [DiagnosisController::class, 'delete']);
+
 
 Route::get('questions', [QuestionController::class, 'index']);
 Route::post('questions', [QuestionController::class, 'store']);
@@ -39,13 +45,6 @@ Route::get('questions/{id}', [QuestionController::class, 'show']);
 Route::get('questions/{id}/edit', [QuestionController::class, 'edit']);
 Route::put('questions/{id}/edit', [QuestionController::class, 'update']);
 Route::delete('questions/{id}/delete', [QuestionController::class, 'destroy']);
-
-Route::get('diagnosis', [DiagnosisController::class, 'index']);
-Route::post('diagnosis', [DiagnosisController::class, 'store']);
-Route::get('diagnosis/{id}', [DiagnosisController::class, 'show']);
-Route::get('diagnosis/{id}/edit', [DiagnosisController::class, 'edit']);
-Route::put('diagnosis/{id}/edit', [DiagnosisController::class, 'update']);
-Route::delete('diagnosis/{id}/delete', [DiagnosisController::class, 'destroy']);
 
 Route::get('result', [ResultController::class, 'index']);
 Route::post('result', [ResultController::class, 'store']);
